@@ -105,17 +105,44 @@
         <profile>
             <id>liberty</id>
             <build>
-                <defaultGoal>liberty:dev</defaultGoal>
+                <defaultGoal>resources:copy-resources liberty:dev</defaultGoal>
                 <resources>
                     <resource>
-                        <filtering>false</filtering>
                         <directory>src/dev/resources</directory>
                     </resource>
                     <resource>
-                        <filtering>false</filtering>
                         <directory>src/main/resources</directory>
+                        <excludes>
+                            <exclude>**/*</exclude>
+                        </excludes>
                     </resource>
                 </resources>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>default-cli</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/dev/resources</directory>
+                                        </resource>
+                                        <resource>
+                                            <directory>src/main/resources</directory>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
     </profiles>
