@@ -103,8 +103,9 @@
 
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>liberty</id>
             <build>
+                <defaultGoal>liberty:dev</defaultGoal>
                 <resources>
                     <resource>
                         <filtering>false</filtering>
