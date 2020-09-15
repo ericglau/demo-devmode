@@ -39,7 +39,11 @@ public class SystemResource {
 	public Response getProperties() throws IOException {
 		InputStream is = getClass().getClassLoader().getResourceAsStream("file.txt");
 		String resourceString = IOUtils.toString(is, StandardCharsets.UTF_8);
-	    return Response.ok(resourceString).build();
+
+		InputStream is2 = getClass().getClassLoader().getResourceAsStream("file2.txt");
+		String resourceString2 = IOUtils.toString(is2, StandardCharsets.UTF_8);
+
+	    return Response.ok(resourceString + " " + resourceString2).build();
 	}
 
 }
